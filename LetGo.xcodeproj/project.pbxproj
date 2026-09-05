@@ -1,0 +1,271 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* InspectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* InspectionModels.swift */; };
+		A10000000000000000000002 /* LockScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* LockScanner.swift */; };
+		A10000000000000000000003 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* AppModel.swift */; };
+		A10000000000000000000004 /* FinderServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* FinderServiceProvider.swift */; };
+		A10000000000000000000005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* AppDelegate.swift */; };
+		A10000000000000000000006 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* ContentView.swift */; };
+		A10000000000000000000007 /* LetGoMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* LetGoMain.swift */; };
+		A10000000000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* Assets.xcassets */; };
+		A10000000000000000000009 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* SuggestionsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000000000000000000001 /* InspectionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionModels.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* LockScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScanner.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		A20000000000000000000004 /* FinderServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderServiceProvider.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A20000000000000000000006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000000000000000000007 /* LetGoMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetGoMain.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000000000000000000009 /* Let Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let Go.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2000000000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2000000000000000000000B /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A30000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A40000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A40000000000000000000002 /* Sources */,
+				A40000000000000000000005 /* AppBundle */,
+				A40000000000000000000004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000000000000000000002 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A40000000000000000000003 /* LetGoCore */,
+				A40000000000000000000006 /* LetGoApp */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000003 /* LetGoCore */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000001 /* InspectionModels.swift */,
+				A20000000000000000000002 /* LockScanner.swift */,
+			);
+			path = LetGoCore;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000009 /* Let Go.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000005 /* AppBundle */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000008 /* Info.plist */,
+				A2000000000000000000000A /* Assets.xcassets */,
+			);
+			path = AppBundle;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000006 /* LetGoApp */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000003 /* AppModel.swift */,
+				A20000000000000000000004 /* FinderServiceProvider.swift */,
+				A20000000000000000000005 /* AppDelegate.swift */,
+				A20000000000000000000006 /* ContentView.swift */,
+				A20000000000000000000007 /* LetGoMain.swift */,
+				A2000000000000000000000B /* SuggestionsView.swift */,
+			);
+			path = LetGoApp;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A50000000000000000000001 /* Let Go */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80000000000000000000002 /* Build configuration list for PBXNativeTarget "Let Go" */;
+			buildPhases = (
+				A60000000000000000000001 /* Sources */,
+				A30000000000000000000001 /* Frameworks */,
+				A70000000000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Let Go";
+			productName = "Let Go";
+			productReference = A20000000000000000000009 /* Let Go.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A90000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					A50000000000000000000001 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = A80000000000000000000001 /* Build configuration list for PBXProject "LetGo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A40000000000000000000001;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A40000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A50000000000000000000001 /* Let Go */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A70000000000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000008 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A60000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* InspectionModels.swift in Sources */,
+				A10000000000000000000002 /* LockScanner.swift in Sources */,
+				A10000000000000000000003 /* AppModel.swift in Sources */,
+				A10000000000000000000004 /* FinderServiceProvider.swift in Sources */,
+				A10000000000000000000005 /* AppDelegate.swift in Sources */,
+				A10000000000000000000006 /* ContentView.swift in Sources */,
+				A10000000000000000000007 /* LetGoMain.swift in Sources */,
+				A10000000000000000000009 /* SuggestionsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AA0000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_NAME = "Let Go";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AppBundle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_SWIFT_FLAGS = "-disable-sandbox";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justinchacon.letgo;
+				PRODUCT_NAME = "Let Go";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		AA0000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_NAME = "Let Go";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AppBundle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_SWIFT_FLAGS = "-disable-sandbox";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justinchacon.letgo;
+				PRODUCT_NAME = "Let Go";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A80000000000000000000001 /* Build configuration list for PBXProject "LetGo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000001 /* Debug */,
+				AA0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A80000000000000000000002 /* Build configuration list for PBXNativeTarget "Let Go" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000003 /* Debug */,
+				AA0000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A90000000000000000000001 /* Project object */;
+}
