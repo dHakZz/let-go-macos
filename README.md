@@ -8,6 +8,8 @@ Let Go is a lightweight, privacy-first macOS utility for the moment Finder says 
 
 ![Let Go showing the process that has a file open](docs/screenshots/open-file-detected.png)
 
+*Let Go identifies the process and exact open paths for the item you selected.*
+
 ## Download
 
 [Download Let Go v0.1.0 for macOS](https://github.com/dHakZz/let-go-macos/releases/download/v0.1.0/Let-Go-macOS.zip)
@@ -28,6 +30,31 @@ This first public build is ad-hoc signed and is not yet notarized. After moving 
 - Never uploads the files, paths, or results you inspect.
 
 The interface also previews two planned supporter features—**Watch Until Free** and **Auto-Eject When Ready**. Payment and activation are not connected in v0.1.0, so these controls remain locked.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%">
+      <a href="docs/screenshots/let-go-main.png"><img src="docs/screenshots/let-go-main.png" alt="Let Go start screen"></a>
+      <br><sub>Drop an item into Let Go or click the drop area to choose one.</sub>
+    </td>
+    <td width="50%">
+      <a href="docs/screenshots/supporter-features.png"><img src="docs/screenshots/supporter-features.png" alt="Let Go supporter features"></a>
+      <br><sub>Planned supporter tools are visible and clearly marked as locked.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <a href="docs/screenshots/suggestions.png"><img src="docs/screenshots/suggestions.png" alt="Let Go suggestions window"></a>
+      <br><sub>Send a product suggestion from the app when you choose to.</sub>
+    </td>
+    <td width="50%">
+      <a href="docs/screenshots/whats-new.png"><img src="docs/screenshots/whats-new.png" alt="Let Go What's New window"></a>
+      <br><sub>Click the version number to see what changed.</sub>
+    </td>
+  </tr>
+</table>
 
 ## Try it with a known open file
 
@@ -56,6 +83,6 @@ LETGO_SUPPORT_URL="https://your-support-page.example" zsh Scripts/build-app.sh
 
 ## Project status
 
-Let Go is an early public preview. Suggestions are welcome through the link in the app. See [CHANGELOG.md](CHANGELOG.md) for release notes.
+Let Go v0.1.0 is the first public release. Suggestions are welcome through the link in the app. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 Copyright © 2026 Justin Chacon. All rights reserved. Source is published for transparency and review; see [LICENSE](LICENSE) for permitted use.

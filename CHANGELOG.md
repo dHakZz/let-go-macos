@@ -2,7 +2,7 @@
 
 ## 0.1.0 — September 5, 2026
 
-Initial public preview.
+Initial public release.
 
 - Inspect a file, folder, or mounted drive to find processes using it.
 - Show open paths grouped by process.
