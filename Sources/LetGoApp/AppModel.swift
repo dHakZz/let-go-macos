@@ -26,8 +26,6 @@ final class AppModel: ObservableObject {
     @Published private(set) var actionMessage: String?
     @Published private(set) var isWatching = false
     @Published private(set) var watchPurpose: WatchPurpose?
-    @Published private(set) var isSupporter = false
-    @Published var isSupporterPanelPresented = false
     @Published var isWhatsNewPresented = false
 
     private let scanner = LockScanner()
@@ -47,7 +45,7 @@ final class AppModel: ObservableObject {
 
     var displayVersion: String {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        return "Version \(version ?? "0.1.0")"
+        return "Version \(version ?? "0.1.1")"
     }
 
     var appIcon: NSImage {
@@ -113,16 +111,7 @@ final class AppModel: ObservableObject {
         status = .ready
     }
 
-    func presentSupporterPanel() {
-        isSupporterPanelPresented = true
-    }
-
     func startWatching(autoEject: Bool) {
-        guard isSupporter else {
-            presentSupporterPanel()
-            return
-        }
-
         guard let currentResult = result else { return }
         if autoEject && !canEject(currentResult) {
             actionMessage = "Automatic eject is only available for ejectable external drives."
@@ -232,17 +221,8 @@ final class AppModel: ObservableObject {
     }
 
     func openSupportPage() {
-        if let supportURL {
-            NSWorkspace.shared.open(supportURL)
-            return
-        }
-
-        let alert = NSAlert()
-        alert.messageText = "Support link coming soon"
-        alert.informativeText = "This is a preview. The final button will open Let Go’s support page."
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
+        guard let supportURL else { return }
+        NSWorkspace.shared.open(supportURL)
     }
 
     func showPrivacyInfo() {

@@ -58,8 +58,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
         let applicationItem = NSMenuItem()
         let applicationMenu = NSMenu(title: "Let Go")
-        applicationMenu.addItem(menuItem("Support Let Go", action: #selector(showSupporterPanel)))
-        applicationMenu.addItem(.separator())
+        if model.supportURL != nil {
+            applicationMenu.addItem(menuItem("Support Let Go", action: #selector(showSupportPage)))
+            applicationMenu.addItem(.separator())
+        }
 
         let hideItem = menuItem("Hide Let Go", action: #selector(NSApplication.hide(_:)), key: "h")
         hideItem.target = NSApp
@@ -109,9 +111,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         NSApp.terminate(nil)
     }
 
-    @objc private func showSupporterPanel() {
-        showMainWindow()
-        model.presentSupporterPanel()
+    @objc private func showSupportPage() {
+        model.openSupportPage()
     }
 
     @objc private func showSuggestions() {

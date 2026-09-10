@@ -39,7 +39,8 @@ private struct SuggestionService: Sendable {
         request.timeoutInterval = 25
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("Let Go/0.1.0 (macOS)", forHTTPHeaderField: "User-Agent")
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0.1.1"
+        request.setValue("Let Go/\(version) (macOS)", forHTTPHeaderField: "User-Agent")
         request.setValue(Self.formOrigin, forHTTPHeaderField: "Origin")
         request.setValue(Self.formSource, forHTTPHeaderField: "Referer")
         request.httpBody = try JSONEncoder().encode(

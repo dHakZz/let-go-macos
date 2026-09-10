@@ -24,9 +24,6 @@ struct ContentView: View {
         }
         .frame(minWidth: 620, minHeight: 520)
         .background(Color(nsColor: .windowBackgroundColor))
-        .sheet(isPresented: $model.isSupporterPanelPresented) {
-            SupporterView(model: model)
-        }
         .sheet(isPresented: $model.isWhatsNewPresented) {
             WhatsNewView(model: model)
         }
@@ -155,8 +152,6 @@ struct ContentView: View {
             Text("Nothing is uploaded. Let Go only checks your Mac when you ask it to.")
                 .font(.footnote)
                 .foregroundStyle(.tertiary)
-            supporterActions(nil)
-                .frame(maxWidth: 510)
             Spacer()
         }
         .padding(28)
@@ -172,8 +167,6 @@ struct ContentView: View {
             Text("Large folders and drives can take a little longer.")
                 .foregroundStyle(.secondary)
             Spacer()
-            supporterActions(model.result)
-                .frame(maxWidth: 510)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(28)
@@ -192,7 +185,9 @@ struct ContentView: View {
                     }
                 }
 
-                supporterActions(result)
+                if !result.processes.isEmpty {
+                    automationActions(result)
+                }
             }
             .padding(24)
         }
@@ -320,18 +315,20 @@ struct ContentView: View {
         .background(Color.secondary.opacity(0.06), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 
-    private func supporterActions(_ result: InspectionResult?) -> some View {
+    private func automationActions(_ result: InspectionResult) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Label("Supporter Features", systemImage: "sparkles")
+                Label("Automation", systemImage: "sparkles")
                     .font(.headline)
                 Spacer()
-                if !model.isSupporter {
-                    Label("Locked", systemImage: "lock.fill")
-                        .font(.caption.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
+                Label("Included", systemImage: "checkmark.circle.fill")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.green)
             }
+
+            Text("Let Go can keep checking in the background while you continue working.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
 
             HStack(spacing: 10) {
                 Button {
@@ -339,29 +336,23 @@ struct ContentView: View {
                 } label: {
                     Label(
                         model.watchPurpose == .notify ? "Watching…" : "Watch Until Free",
-                        systemImage: model.isSupporter ? "bell.fill" : "lock.fill"
+                        systemImage: "bell.fill"
                     )
                 }
                 .buttonStyle(.bordered)
-                .disabled(
-                    model.isWatching ||
-                    (model.isSupporter && (result == nil || result?.processes.isEmpty == true))
-                )
+                .disabled(model.isWatching)
 
-                if !model.isSupporter || (result?.kind == .volume && result.map(model.canEject) == true) {
+                if model.canEject(result) {
                     Button {
                         model.startWatching(autoEject: true)
                     } label: {
                         Label(
                             model.watchPurpose == .eject ? "Waiting to Eject…" : "Auto-Eject When Ready",
-                            systemImage: model.isSupporter ? "eject.fill" : "lock.fill"
+                            systemImage: "eject.fill"
                         )
                     }
                     .buttonStyle(.bordered)
-                    .disabled(
-                        model.isWatching ||
-                        (model.isSupporter && (result == nil || result?.processes.isEmpty == true))
-                    )
+                    .disabled(model.isWatching)
                 }
 
                 if model.isWatching {
@@ -372,6 +363,7 @@ struct ContentView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
         .background(Color.indigo.opacity(0.075), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
@@ -393,8 +385,6 @@ struct ContentView: View {
             }
             .buttonStyle(.borderedProminent)
             Spacer()
-            supporterActions(nil)
-                .frame(maxWidth: 510)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(28)
@@ -441,6 +431,18 @@ struct ContentView: View {
                 .foregroundStyle(.tertiary)
 
             Spacer()
+
+            if model.supportURL != nil {
+                Button("Support Let Go") {
+                    model.openSupportPage()
+                }
+                .font(.caption)
+                .buttonStyle(.link)
+
+                Text("|")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
 
             Button("Privacy & Safety") {
                 model.showPrivacyInfo()
@@ -520,7 +522,7 @@ private struct WhatsNewView: View {
                 Divider()
                 whatsNewRow(
                     icon: "sparkles",
-                    text: "Supporter Features remain below the current result in every task."
+                    text: "Watch Until Free and Auto-Eject When Ready are now included for everyone."
                 )
                 Divider()
                 whatsNewRow(
@@ -552,96 +554,6 @@ private struct WhatsNewView: View {
 
             Text(text)
                 .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .padding(14)
-    }
-}
-
-private struct SupporterView: View {
-    @ObservedObject var model: AppModel
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        VStack(spacing: 20) {
-            HStack(alignment: .top, spacing: 16) {
-                Image(nsImage: model.appIcon)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 68, height: 68)
-
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Supporter Tools")
-                        .font(.title2.bold())
-                    Text("Support Let Go once to unlock extra convenience tools.")
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-            }
-
-            VStack(spacing: 0) {
-                supporterRow(
-                    icon: "bell.badge.fill",
-                    title: "Watch Until Free",
-                    detail: "Keep checking in the background and notify you when an item is released."
-                )
-                Divider()
-                supporterRow(
-                    icon: "eject.fill",
-                    title: "Auto-Eject When Ready",
-                    detail: "Retry automatically and safely eject an external drive as soon as it is free."
-                )
-            }
-            .background(Color.secondary.opacity(0.06), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-
-            Text("One-time supporter unlock · $5 suggested")
-                .font(.subheadline.weight(.medium))
-
-            HStack {
-                Button("Not Now") {
-                    dismiss()
-                }
-                .keyboardShortcut(.cancelAction)
-
-                Spacer()
-
-                Button {
-                    model.openSupportPage()
-                } label: {
-                    Label("Support & Unlock", systemImage: "heart.fill")
-                }
-                .buttonStyle(.borderedProminent)
-                .keyboardShortcut(.defaultAction)
-            }
-
-            if model.supportURL == nil {
-                Text("Preview only — payment and activation will be connected before release.")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
-            }
-        }
-        .padding(26)
-        .frame(width: 530)
-    }
-
-    private func supporterRow(icon: String, title: String, detail: String) -> some View {
-        HStack(spacing: 13) {
-            Image(systemName: icon)
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(.indigo)
-                .frame(width: 28)
-            VStack(alignment: .leading, spacing: 3) {
-                HStack(spacing: 6) {
-                    Text(title)
-                        .font(.headline)
-                    Image(systemName: "lock.fill")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-                Text(detail)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
         }
         .padding(14)
     }
