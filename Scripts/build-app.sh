@@ -8,6 +8,13 @@ STAGING_ROOT="/private/tmp/codex-letgo-package"
 APP_BUNDLE="$STAGING_ROOT/Let Go.app"
 OUTPUT_APP="$OUTPUT_DIRECTORY/Let Go.app"
 OUTPUT_ZIP="$OUTPUT_DIRECTORY/Let-Go-macOS.zip"
+SIGNING_IDENTITY="${LETGO_SIGNING_IDENTITY:-}"
+NOTARY_PROFILE="${LETGO_NOTARY_PROFILE:-}"
+
+if [[ -n "$NOTARY_PROFILE" && -z "$SIGNING_IDENTITY" ]]; then
+    print -u2 "LETGO_NOTARY_PROFILE requires a Developer ID identity in LETGO_SIGNING_IDENTITY."
+    exit 1
+fi
 
 cd "$PROJECT_ROOT"
 xcodebuild \
@@ -42,11 +49,42 @@ if [[ -n "${LETGO_SUPPORT_URL:-}" ]]; then
         "$APP_BUNDLE/Contents/Info.plist"
 fi
 
-/usr/bin/codesign --force --deep --sign - "$APP_BUNDLE"
+if [[ -n "$SIGNING_IDENTITY" ]]; then
+    /usr/bin/codesign \
+        --force \
+        --options runtime \
+        --timestamp \
+        --sign "$SIGNING_IDENTITY" \
+        "$APP_BUNDLE"
+    print "Signed with Developer ID: $SIGNING_IDENTITY"
+else
+    /usr/bin/codesign --force --sign - "$APP_BUNDLE"
+    print "Created an ad-hoc signed development build."
+fi
+
+/usr/bin/codesign --verify --strict --verbose=2 "$APP_BUNDLE"
 /usr/bin/touch "$APP_BUNDLE"
 /bin/mkdir -p "$OUTPUT_DIRECTORY"
 /bin/rm -rf "$OUTPUT_APP"
 /usr/bin/ditto "$APP_BUNDLE" "$OUTPUT_APP"
 /usr/bin/ditto -c -k --sequesterRsrc --keepParent "$APP_BUNDLE" "$OUTPUT_ZIP"
+
+if [[ -n "$NOTARY_PROFILE" ]]; then
+    print "Submitting the signed archive to Apple for notarization…"
+    /usr/bin/xcrun notarytool submit \
+        "$OUTPUT_ZIP" \
+        --keychain-profile "$NOTARY_PROFILE" \
+        --wait
+
+    /usr/bin/xcrun stapler staple "$APP_BUNDLE"
+    /usr/bin/xcrun stapler validate "$APP_BUNDLE"
+
+    /bin/rm -rf "$OUTPUT_APP"
+    /bin/rm -f "$OUTPUT_ZIP"
+    /usr/bin/ditto "$APP_BUNDLE" "$OUTPUT_APP"
+    /usr/bin/ditto -c -k --sequesterRsrc --keepParent "$APP_BUNDLE" "$OUTPUT_ZIP"
+    /usr/sbin/spctl --assess --type execute --verbose=4 "$OUTPUT_APP"
+    print "Created a Developer ID signed and notarized release build."
+fi
 
 print "$OUTPUT_ZIP"
