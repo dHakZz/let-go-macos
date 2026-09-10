@@ -6,17 +6,13 @@
 
 Let Go is a lightweight, privacy-first macOS utility for the moment Finder says an item is in use but does not tell you why. Drop in an item—or click the drop area—and Let Go shows the apps and background processes currently using it.
 
-![Let Go showing the process that has a file open](docs/screenshots/open-file-detected.png)
-
-*Let Go identifies the process and exact open paths for the item you selected.*
-
 ## Download
 
-[Download Let Go v0.1.0 for macOS](https://github.com/dHakZz/let-go-macos/releases/download/v0.1.0/Let-Go-macOS.zip)
+[Download the latest Let Go release for macOS](https://github.com/dHakZz/let-go-macos/releases/latest)
 
 Requires macOS 13 Ventura or later. The universal build supports Apple silicon and Intel Macs.
 
-This first public build is ad-hoc signed and is not yet notarized. After moving **Let Go** to Applications, right-click it and choose **Open** the first time.
+The currently published v0.1.0 build is ad-hoc signed and is not yet notarized. A Developer ID signed and notarized v0.1.1 build is being prepared before the next round of promotion.
 
 ## What it does
 
@@ -26,35 +22,16 @@ This first public build is ad-hoc signed and is not yet notarized. After moving 
 - Reveals an open item in Finder.
 - Sends a normal quit request to a process owned by the current user.
 - Safely ejects an external volume when nothing is using it.
+- Watches a busy item and notifies you as soon as it is free.
+- Automatically ejects an external drive as soon as it is safe.
 - Starts a check from Finder's **Services → Check What’s Using This** command.
 - Never uploads the files, paths, or results you inspect.
 
-The interface also previews two planned supporter features—**Watch Until Free** and **Auto-Eject When Ready**. Payment and activation are not connected in v0.1.0, so these controls remain locked.
+**Watch Until Free** and **Auto-Eject When Ready** are included for everyone. If a support link is configured in a release build, it is an optional thank-you and never unlocks or restricts app features.
 
 ## Screenshots
 
-<table>
-  <tr>
-    <td width="50%">
-      <a href="docs/screenshots/let-go-main.png"><img src="docs/screenshots/let-go-main.png" alt="Let Go start screen"></a>
-      <br><sub>Drop an item into Let Go or click the drop area to choose one.</sub>
-    </td>
-    <td width="50%">
-      <a href="docs/screenshots/supporter-features.png"><img src="docs/screenshots/supporter-features.png" alt="Let Go supporter features"></a>
-      <br><sub>Planned supporter tools are visible and clearly marked as locked.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <a href="docs/screenshots/suggestions.png"><img src="docs/screenshots/suggestions.png" alt="Let Go suggestions window"></a>
-      <br><sub>Send a product suggestion from the app when you choose to.</sub>
-    </td>
-    <td width="50%">
-      <a href="docs/screenshots/whats-new.png"><img src="docs/screenshots/whats-new.png" alt="Let Go What's New window"></a>
-      <br><sub>Click the version number to see what changed.</sub>
-    </td>
-  </tr>
-</table>
+The v0.1.1 screenshots are being refreshed after the signed and notarized release build is complete. The previous images were removed because they showed the retired locked-feature preview.
 
 ## Try it with a known open file
 
@@ -73,7 +50,7 @@ zsh Scripts/test.sh
 zsh Scripts/build-app.sh
 ```
 
-The packaging script creates a universal Intel/Apple silicon archive at `outputs/Let-Go-macOS.zip`.
+The packaging script creates a universal Intel/Apple silicon archive at `outputs/Let-Go-macOS.zip`. Without release credentials it creates an ad-hoc signed development build.
 
 To configure a support page while packaging:
 
@@ -81,8 +58,10 @@ To configure a support page while packaging:
 LETGO_SUPPORT_URL="https://your-support-page.example" zsh Scripts/build-app.sh
 ```
 
+The support link is hidden when no URL is configured. For the Developer ID signing and notarization workflow, see [DISTRIBUTION.md](DISTRIBUTION.md).
+
 ## Project status
 
-Let Go v0.1.0 is the first public release. Suggestions are welcome through the link in the app. See [CHANGELOG.md](CHANGELOG.md) for release notes.
+Let Go v0.1.1 is being prepared as the first signed and notarized update. Suggestions are welcome through the link in the app. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 Copyright © 2026 Justin Chacon. All rights reserved. Source is published for transparency and review; see [LICENSE](LICENSE) for permitted use.
