@@ -1,6 +1,6 @@
 # Distributing Let Go
 
-Public builds should be signed with a **Developer ID Application** certificate, use the Hardened Runtime, and be notarized by Apple before they are uploaded to GitHub.
+Polished production builds should be signed with a **Developer ID Application** certificate, use the Hardened Runtime, and be notarized by Apple before wide promotion. Early GitHub feedback builds may be ad-hoc signed when their release notes and download instructions clearly disclose that macOS will show a Gatekeeper warning.
 
 Apple's current guidance:
 

@@ -6,13 +6,15 @@
 
 Let Go is a lightweight, privacy-first macOS utility for the moment Finder says an item is in use but does not tell you why. Drop in an item—or click the drop area—and Let Go shows the apps and background processes currently using it.
 
-## Download
+## Download the feedback preview
 
-[Download the latest Let Go release for macOS](https://github.com/dHakZz/let-go-macos/releases/latest)
+[Download Let Go v0.1.1 for macOS](https://github.com/dHakZz/let-go-macos/releases/download/v0.1.1/Let-Go-macOS.zip)
 
 Requires macOS 13 Ventura or later. The universal build supports Apple silicon and Intel Macs.
 
-The currently published v0.1.0 build is ad-hoc signed and is not yet notarized. A Developer ID signed and notarized v0.1.1 build is being prepared before the next round of promotion.
+Version 0.1.1 is an early feedback build. It is ad-hoc signed and has not yet been notarized by Apple, so macOS will ask you to confirm that you want to open it. After unzipping it, Control-click **Let Go.app**, choose **Open**, then choose **Open** again. If macOS still blocks it, open **System Settings → Privacy & Security** and choose **Open Anyway** for Let Go.
+
+For extra verification, compare the download's SHA-256 value with the checksum published in the [v0.1.1 release notes](https://github.com/dHakZz/let-go-macos/releases/tag/v0.1.1). The source for this build is available in this repository.
 
 ## What it does
 
@@ -31,7 +33,7 @@ The currently published v0.1.0 build is ad-hoc signed and is not yet notarized. 
 
 ## Screenshots
 
-The v0.1.1 screenshots are being refreshed after the signed and notarized release build is complete. The previous images were removed because they showed the retired locked-feature preview.
+Fresh screenshots are being prepared as feedback shapes the next polished release. The previous images were removed because they showed the retired locked-feature preview.
 
 ## Try it with a known open file
 
@@ -62,6 +64,6 @@ The support link is hidden when no URL is configured. For the Developer ID signi
 
 ## Project status
 
-Let Go v0.1.1 is being prepared as the first signed and notarized update. Suggestions are welcome through the link in the app. See [CHANGELOG.md](CHANGELOG.md) for release notes.
+Let Go v0.1.1 is a public feedback preview. Suggestions are welcome through the link in the app and will help shape the first polished, signed, and notarized release. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 Copyright © 2026 Justin Chacon. All rights reserved. Source is published for transparency and review; see [LICENSE](LICENSE) for permitted use.

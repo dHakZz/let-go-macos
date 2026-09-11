@@ -1,12 +1,14 @@
 # Changelog
 
-## 0.1.1 — Unreleased
+## 0.1.1 — September 11, 2026
+
+Public feedback preview.
 
 - Make Watch Until Free and Auto-Eject When Ready available to everyone.
 - Remove the locked supporter preview and all payment-gated language.
 - Show automation controls only after Let Go finds a process holding the selected item.
 - Keep financial support optional and hide the support link when no destination is configured.
-- Add a Developer ID signing and Apple notarization workflow for release builds.
+- Add a Developer ID signing and Apple notarization workflow for a future polished release.
 
 ## 0.1.0 — September 5, 2026
 
